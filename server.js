@@ -7,6 +7,7 @@ const express = require("express");
 const router = express.Router();
 const postmanRequest = require("postman-request");
 const cheerio = require("cheerio");
+const PORT = 3000;
 //This is the main function for GET requests.
 router.get("/", function(req, res) {
     //This is the url we want to go to, such as example.com
@@ -31,3 +32,6 @@ function proxy(html, url) {
     $("head").append(base);
     return $.html();
 }
+appendFile.listen(PORT, () => {
+    console.log("running");
+});
