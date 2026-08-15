@@ -1,0 +1,10 @@
+This is a collection of links used for the proxy, it includes the link that is used by the code, and the link used by the author.
+
+
+CODE
+https://rendernoguardianproxy-1.onrender.com
+AUTHOR
+https://dashboard.render.com/web/srv-d9utmn2d0e5s73cft3eg
+
+STUDY THIS!!!!!!!!!!!!!!!!!!!!!
+https://gist.githubusercontent.com/shaond/f1d5d6250a0411675990/raw/a5159bf84cf46b305a779f8b8f1cb4eb22ea9e36/proxy.js
