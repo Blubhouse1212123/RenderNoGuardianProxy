@@ -33,7 +33,7 @@ function proxy(html, url) {
     //Rewrite all A elements so it redirects HREFs through the proxy.
     const originalhref = cheerioHTML("a").attr("href");
     cheerioHTML("a").each(function(index, element) {
-        cheerioHTML("a").attr("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(href));
+        cheerioHTML("a").attr("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalhref));
     });
     //Prepend the injected script to the HEAD element of the HTML
     cheerioHTML("head").prepend(`
