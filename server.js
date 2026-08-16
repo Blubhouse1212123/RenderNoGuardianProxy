@@ -37,8 +37,10 @@ function proxy(html, url) {
         const currentElement = cheerioHTML(this);
         const originalhref = currentElement.attr("href");
         //If the originalhref of the current element doesnt include the proxy url, then fix the href.
-        if (!originalhref.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
-            currentElement.attr("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + originalhref);               
+        if (!originalhref === undefined) {
+            if (!originalhref.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
+                currentElement.attr("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + originalhref);               
+            }
         }
     });
     //Prepend the injected script to the HEAD element of the HTML
