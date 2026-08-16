@@ -7,6 +7,8 @@ const express = require("express");
 const router = express.Router();
 const request = require("request");
 const cheerio = require("cheerio");
+const app = express();
+const PORT = process.env.port || 3000;
 //This is the main function for GET requests.
 router.get("/", function(req, res) {
     //This is the url we want to go to, such as example.com
@@ -31,6 +33,9 @@ function proxy(html, url) {
         alert("JS is injected");
         </script>
     `);
-    return $.html();
+    return cheerioHTML.html();
 
 }
+app.listen(PORT, () => {
+    console.log("Proxy Running");
+});
