@@ -26,7 +26,7 @@ router.get("/", function(req, res) {
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
     //Prepend the injected script to the HEAD element of the HTML
-    $("head").prepend(`
+    cheerioHTML("head").prepend(`
         <script>
         alert("JS is injected");
         </script>
