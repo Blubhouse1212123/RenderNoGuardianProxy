@@ -8,8 +8,9 @@ const router = express.Router();
 const request = require("request");
 const cheerio = require("cheerio");
 const app = express();
-const PORT = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
 const PROXYPATH = "/proxy";
+app.use("/api", router);
 //This is the main function for GET requests.
 router.get("/", function(req, res) {
     //This is the url we want to go to, such as example.com
