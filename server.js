@@ -31,9 +31,15 @@ router.get("/", function(req, res) {
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
     //Rewrite all A elements so it redirects HREFs through the proxy.
-    const originalhref = cheerioHTML("a").attr("href");
     cheerioHTML("a").each(function(index, element) {
-        cheerioHTML("a").attr("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + originalhref);
+        //Current Element is the current one we are working with
+        //Original href is the original href of the current element
+        const currentElement = cheerioHTML(this);
+        const originalhref = currentElement.attr("href");
+        //If the originalhref of the current element doesnt include the proxy url, then fix the href.
+        if (!originalhref.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
+            currentElement.attr("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + originalhref);               
+        }
     });
     //Prepend the injected script to the HEAD element of the HTML
     cheerioHTML("head").prepend(`
