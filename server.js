@@ -1,6 +1,4 @@
-//To Update this file, run git add .
-//git commit -m "UPDATE DESCRIPTION"
-//git push
+//Run update.ps1 to update the file to render and git
 const http = require("http");
 const axios = require("axios");
 const express = require("express");
@@ -33,6 +31,9 @@ function proxy(html, url) {
     cheerioHTML("head").prepend(`
         <script>
         alert("JS is injected");
+        headers: {
+            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0";
+        }
         </script>
     `);
     return cheerioHTML.html();
