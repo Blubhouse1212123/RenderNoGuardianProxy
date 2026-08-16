@@ -21,24 +21,25 @@ router.get("/", function(req, res) {
             res.removeHeader("X-Frame-Options");
             res.removeHeader("Content-Security-Policy");
             res.removeHeader("Access-Control-Allow-Origin");
+            res.removeHeader("Server");
+            res.removeHeader("Transfer-Encoding");
+            res.removeHeader("X-Powered-By");
             res.send(proxied);
         }
     });
 });
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
+    //Rewrite all A elements so it redirects HREFs through the proxy.
+    const originalhref = cheerioHTML("a").attr("href");
+    cheerioHTML("a").each(function(index, element) {
+        cheerioHTML("a").attr("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(href));
+    });
     //Prepend the injected script to the HEAD element of the HTML
     cheerioHTML("head").prepend(`
         <script>
-        alert("JS is injected");
-        headers: {
-            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0";
-        }
         </script>
     `);
     return cheerioHTML.html();
 
 }
-app.listen(PORT, () => {
-    console.log("Proxy Running");
-});
