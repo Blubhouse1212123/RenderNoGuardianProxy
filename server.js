@@ -37,11 +37,11 @@ function proxy(html, url) {
     //itll do if the current a element doestn have the proxy url
     //then take the current element and add that url to it
     //Prepend the injected script to the HEAD element of the HTML
-    //const a = cheerioHTML("a");
-    //const length = a.length;
-    //if (length > 0) {
-       // console.log("lengths");
-  //  }
+    const a = cheerioHTML("a");
+    const length = a.length;
+    if (length > 0) {
+        console.log("lengths");
+    }
     return cheerioHTML.html();
 
 }
