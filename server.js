@@ -45,3 +45,6 @@ function proxy(html, url) {
     return cheerioHTML.html();
 
 }
+app.listen(PORT, () => {
+    console.log("NoGuardian Proxy is running via Render");
+});
