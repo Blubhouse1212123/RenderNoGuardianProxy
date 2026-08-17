@@ -36,7 +36,9 @@ function proxy(html, url) {
         document.addEventListener("DOMContentLoaded", function() {
             const a = document.querySelectorAll("a");
             a.forEach(link => {
-            link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
+                if (!link.href.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
+                    link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
+                }
             });
         });
         </script>
