@@ -45,7 +45,7 @@ function proxy(html, url) {
                 }
             });
             a.forEach(element => {
-                element.addEventListener("click" () => {
+                element.addEventListener("click", () => {
                     cheerioHTML("iframe").attr("src", element.href);
                 });
             });
