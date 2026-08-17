@@ -40,12 +40,8 @@ function proxy(html, url) {
     const a = cheerioHTML("a");
     const length = a.length;
     if (length > 0) {
-        alert("We have A elements");
+        console.log("lengths");
     }
-    cheerioHTML("head").prepend(`
-        <script>
-        </script>
-    `);
     return cheerioHTML.html();
 
 }
