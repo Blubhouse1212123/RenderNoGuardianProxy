@@ -33,7 +33,7 @@ router.get("/", function(req, res) {
 });
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
-    cheerio.load(fs.readFileSync("E:\NoGuardian\NoGuardian.html"));
+    cheerio.load(fs.readFileSync("E:\\NoGuardian\\NoGuardian.html"));
     //cheerioHTML("iframe").attr("src", "https://the link");
     //Im gonna inject a script to get a elements and fix them.
     cheerioHTML("head").prepend(`
