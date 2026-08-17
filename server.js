@@ -6,6 +6,8 @@ const router = express.Router();
 const request = require("request");
 const cheerio = require("cheerio");
 const app = express();
+const fs = require("fs");
+const path = require("path");
 const PORT = process.env.PORT || 3000;
 const PROXYPATH = "/proxy";
 app.use("/api", router);
@@ -30,6 +32,8 @@ router.get("/", function(req, res) {
 });
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
+    cheerio.load(fs.readFileSync("E:\NoGuardian\NoGuardian.html"));
+    //cheerioHTML("iframe").attr("src", "https://the link");
     //Im gonna inject a script to get a elements and fix them.
     cheerioHTML("head").prepend(`
         <script>
@@ -39,6 +43,9 @@ function proxy(html, url) {
                 if (!link.href.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
                     link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
                 }
+            });
+            a.addEventListener("click", () => {
+                cheerioHTML("iframe").attr("src", href);
             });
         });
         </script>
