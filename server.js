@@ -1,4 +1,5 @@
 //Run update.ps1 to update the file to render and git
+//TODO: I have un needed npm installs i need to rid of.
 const http = require("http");
 const axios = require("axios");
 const express = require("express");
@@ -46,7 +47,7 @@ function proxy(html, url) {
             });
             a.forEach(element => {
                 element.addEventListener("click", () => {
-                    cheerioHTML("iframe").attr("src", element.href);
+                    cheerioHTML("iframe").attr("src", "https://example.com");
                 });
             });
         });
