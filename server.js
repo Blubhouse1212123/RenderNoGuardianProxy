@@ -33,11 +33,12 @@ function proxy(html, url) {
     //Im gonna inject a script to get a elements and fix them.
     cheerioHTML("head").prepend(`
         <script>
-        const a = document.querySelectorAll("a");
-        a.forEach(link => {
-           link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
-            alert("hui");
-           });
+        document.addEventListener("DOMContentLoaded", function() {
+            const a = document.querySelectorAll("a");
+            a.forEach(link => {
+            link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
+            });
+        });
         </script>
     `);
     return cheerioHTML.html();
