@@ -41,7 +41,7 @@ function proxy(html, url) {
         const href = cheerioHTML("a").attr("href");
         cheerioHTML("a").each(function(index, element) {
             var currentHref = element.attribs.href;
-            if (!currentHref.contains("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
+            if (!currentHref.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
                 //then add it!
                 currentHref = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(currentHref);
             }
