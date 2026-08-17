@@ -45,8 +45,8 @@ function proxy(html, url) {
                 }
             });
             a.forEach(element => {
-                a.addEventListener("click" () => {
-                    cheerioHTML("iframe").attr("src", href);
+                element.addEventListener("click" () => {
+                    cheerioHTML("iframe").attr("src", element.href);
                 });
             });
         });
