@@ -46,6 +46,7 @@ function proxy(html, url) {
                 currentHref = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(currentHref);
             }
         });
+        return cheerioHTML.html();
     } else {
         console.warn("No Avalible A Elements!");
     }
