@@ -30,18 +30,24 @@ router.get("/", function(req, res) {
 });
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
-    //Now we need to rewrite all <a> elements so it directs it through the proxy instead of the original domain
-    //https://cheerio.js.org/docs/basics/manipulation/
-    //I am goinjg to have to... hmm,
-    //okay so i gotta do a loop that says do this to all a elements
-    //itll do if the current a element doestn have the proxy url
-    //then take the current element and add that url to it
-    //Prepend the injected script to the HEAD element of the HTML
-    const a = cheerioHTML("a");
-    const length = a.length;
-    console.log(length);
-    if (length === 0) {
-        console.log("lengths");
+    //Get all A elements and redirect their HREFs through the proxy url
+    var a = cheerioHTML("a");
+    var lengthOf = a.length;
+    //He checks for > 0 because we want to know if it returned any before we attempt to manipulate them
+    if (lengthOf > 0) {
+        //attr reads and writes attributes, such as <a
+        //href const is used to check the loop for each href
+        //current href is used to read the current one in the loop we need to modify.
+        const href = cheerioHTML("a").attr("href");
+        cheerioHTML(href).each(function(index, element) {
+            const currentHref = element.attribs.href;
+            if (!currentHref.contains("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
+                //then add it!
+                currentHref = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(currentHref);
+            }
+        });
+    } else {
+        console.warn("No Avalible A Elements!");
     }
     return cheerioHTML.html();
 
