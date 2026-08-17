@@ -44,8 +44,10 @@ function proxy(html, url) {
                     link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
                 }
             });
-            a.addEventListener("click", () => {
-                cheerioHTML("iframe").attr("src", href);
+            a.forEach(element => {
+                a.addEventListener("click" () => {
+                    cheerioHTML("iframe").attr("src", href);
+                });
             });
         });
         </script>
