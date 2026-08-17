@@ -30,26 +30,15 @@ router.get("/", function(req, res) {
 });
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
-    //Get all A elements and redirect their HREFs through the proxy url
-    var a = cheerioHTML("a");
-    var lengthOf = a.length;
-    //He checks for > 0 because we want to know if it returned any before we attempt to manipulate them
-    if (lengthOf > 0) {
-        //attr reads and writes attributes, such as <a
-        //href const is used to check the loop for each href
-        //current href is used to read the current one in the loop we need to modify.
-        const href = cheerioHTML("a").attr("href");
-        cheerioHTML("a").each(function(index, element) {
-            var currentHref = element.attribs.href;
-            if (!currentHref.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
-                //then add it!
-                currentHref = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(currentHref);
-            }
+    //Im gonna inject a script to get a elements and fix them.
+    cheerioHTML("head").prepend(`
+        <script>
+        const a = document.querySelectorAll("a");
+        a.forEach(link => {
+           link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
         });
-        return cheerioHTML.html();
-    } else {
-        console.warn("No Avalible A Elements!");
-    }
+        </script>
+    `);
     return cheerioHTML.html();
 
 }
