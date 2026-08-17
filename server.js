@@ -36,7 +36,8 @@ function proxy(html, url) {
         const a = document.querySelectorAll("a");
         a.forEach(link => {
            link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
-        });
+            alert("hui");
+           });
         </script>
     `);
     return cheerioHTML.html();
