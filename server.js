@@ -39,8 +39,8 @@ function proxy(html, url) {
         //href const is used to check the loop for each href
         //current href is used to read the current one in the loop we need to modify.
         const href = cheerioHTML("a").attr("href");
-        cheerioHTML(href).each(function(index, element) {
-            const currentHref = element.attribs.href;
+        cheerioHTML("a").each(function(index, element) {
+            var currentHref = element.attribs.href;
             if (!currentHref.contains("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
                 //then add it!
                 currentHref = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(currentHref);
