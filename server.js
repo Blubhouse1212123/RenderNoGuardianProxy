@@ -41,12 +41,16 @@ function proxy(html, url) {
     //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
     //You have to do each not forEach like this, you cant use forEach on a const, must do cheerioHTML
     //Learned that with a quick google AI overview search.
-    cheerioHTML("a").each((element, index) => {
-        element.addEventListener("click", () => {
-            const trueHref = cheerioHTML(element).attr("href");
-            console.log(trueHref);
-        });
+    const hrefArray = [];
+    cheerioHTML("a").each((index, element) => {
+        //The href of every individual element this thing loops through
+        var trueHref = cheerioHTML(element).attr("href");
+        hrefArray.push(trueHref);
     });
+    cheerioHTML("head").prepend(`
+       <script>
+        </script>
+    `);
     //Element is provided as an arg.
     return cheerioHTML.html();
 
