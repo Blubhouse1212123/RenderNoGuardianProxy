@@ -42,7 +42,10 @@ function proxy(html, url) {
     //You have to do each not forEach like this, you cant use forEach on a const, must do cheerioHTML
     //Learned that with a quick google AI overview search.
     cheerioHTML("a").each((element, index) => {
-        console.log(element);
+        element.addEventListener("click", () => {
+            var trueHref = cheerioHTML(element).attr("href");
+            var newHref = cheerioHTML(element).attr("href", "poop.com");
+        });
     });
     //Element is provided as an arg.
     return cheerioHTML.html();
