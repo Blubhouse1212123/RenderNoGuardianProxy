@@ -28,16 +28,12 @@ router.get("/", function(req, res) {
             res.removeHeader("Transfer-Encoding");
             res.removeHeader("X-Powered-By");
             res.send(proxied);
-        } else {
-            console.warn(error);
         }
     });
 });
 function proxy(html, url) {
     //I have to figure a way to load the file correctly
     //i be getting no such file or directory error.
-    var frontend = fs.readFileSync("E:/NoGuardian/NoGuardian.html", "utf8");
-    var loadedFrontend = cheerio.load(frontend);
     var cheerioHTML = cheerio.load(html);
     //cheerioHTML("iframe").attr("src", "https://the link");
     //Im gonna inject a script to get a elements and fix them.
