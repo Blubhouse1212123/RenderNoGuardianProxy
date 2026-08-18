@@ -41,11 +41,11 @@ function proxy(html, url) {
     //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
     const a = cheerioHTML("a");
     //I now have ALL a elements
-    a.forEach(rewrite);
+    //For some reason this is the better way to do it, idk.
+    a.forEach((element, index) => {
+        console.log(element);
+    });
     //Element is provided as an arg.
-    function rewrite(element) {
-        console.error(element);
-    }
     return cheerioHTML.html();
 
 }
