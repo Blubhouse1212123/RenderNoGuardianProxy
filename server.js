@@ -28,6 +28,8 @@ router.get("/", function(req, res) {
             res.removeHeader("Transfer-Encoding");
             res.removeHeader("X-Powered-By");
             res.send(proxied);
+        } else {
+            console.warn(error);
         }
     });
 });
