@@ -36,7 +36,6 @@ router.get("/", function(req, res) {
     });
 });
 //Take advantage of var's non-block scoped properties to use it in the prepended script, maybe.
-var hrefArray = [];
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
     //I have to do it from here because the SOP, also referred to as the CIA is preventing me from doing it.
@@ -50,6 +49,7 @@ function proxy(html, url) {
     });
     cheerioHTML("head").prepend(`
        <script>
+        var hrefArray = [];
         hrefArray.forEach(clean);
         function clean(item, index, arr) {
             alert(item);
