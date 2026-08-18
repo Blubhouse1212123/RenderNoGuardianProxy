@@ -40,7 +40,7 @@ function proxy(html, url) {
     //I have to do it from here because the SOP, also referred to as the CIA is preventing me from doing it.
     //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
     const a = cheerioHTML("a");
-    alert(a);
+    console.log("HIIIII" + a);
     return cheerioHTML.html();
 
 }
