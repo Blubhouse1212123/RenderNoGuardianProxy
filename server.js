@@ -39,10 +39,9 @@ function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
     //I have to do it from here because the SOP, also referred to as the CIA is preventing me from doing it.
     //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
-    const a = cheerioHTML("a");
-    //I now have ALL a elements
-    //For some reason this is the better way to do it, idk.
-    a.forEach((element, index) => {
+    //You have to do it like this, you cant use forEach on a const, must do cheerioHTML
+    //Learned that from google
+    cheerioHTML("a").forEach((element, index) => {
         console.log(element);
     });
     //Element is provided as an arg.
