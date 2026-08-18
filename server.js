@@ -1,5 +1,7 @@
 //Run update.ps1 to update the file to render and git
 //TODO: I have un needed npm installs i need to rid of.
+//NPM Installed Packages
+//Everything else here is express app setup, you can find references for this in Cheerio Documentation
 const http = require("http");
 const axios = require("axios");
 const express = require("express");
@@ -13,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 const PROXYPATH = "/proxy";
 app.use("/api", router);
 //This is the main function for GET requests.
+//Incoming GET requests from the URL
 router.get("/", function(req, res) {
     //This is the url we want to go to, such as example.com
     //we have to stick thus
@@ -20,6 +23,7 @@ router.get("/", function(req, res) {
     const page = request.get(url, function(error, response, body) {
         if (!error) {
             const proxied = proxy(body, url);
+            //Maybe i would do it here maybe idk
             //Removing headers so we dont get issues of refusal.
             res.removeHeader("X-Frame-Options");
             res.removeHeader("Content-Security-Policy");
@@ -32,26 +36,11 @@ router.get("/", function(req, res) {
     });
 });
 function proxy(html, url) {
-    //I have to figure a way to load the file correctly
-    //i be getting no such file or directory error.
     var cheerioHTML = cheerio.load(html);
-    //cheerioHTML("iframe").attr("src", "https://the link");
-    //Im gonna inject a script to get a elements and fix them.
-    //cheerioHTML("head").prepend(`
-     //   <script>
-      //  document.addEventListener("DOMContentLoaded", function() {
-       //     const a = document.querySelectorAll("a");
-        //    a.forEach(link => {
-         //       //if (!link.href.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
-          //          //link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
-           //     //}
-            //    link.addEventListener("click", () => {
-             //       console.log("test");
-              //  });
-        //    });
-        //});
- //       </script>
-  //  `);
+    //I have to do it from here because the SOP, also referred to as the CIA is preventing me from doing it.
+    //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
+    const a = cheerioHTML("a");
+    alert(a);
     return cheerioHTML.html();
 
 }
