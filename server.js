@@ -43,8 +43,8 @@ function proxy(html, url) {
     //Learned that with a quick google AI overview search.
     cheerioHTML("a").each((element, index) => {
         element.addEventListener("click", () => {
-            var trueHref = cheerioHTML(element).attr("href");
-            var newHref = cheerioHTML(element).attr("href", "poop.com");
+            const trueHref = cheerioHTML(element).attr("href");
+            console.log(trueHref);
         });
     });
     //Element is provided as an arg.
