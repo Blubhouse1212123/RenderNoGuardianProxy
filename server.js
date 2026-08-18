@@ -34,7 +34,7 @@ router.get("/", function(req, res) {
 function proxy(html, url) {
     //I have to figure a way to load the file correctly
     //i be getting no such file or directory error.
-    var frontend = fs.readFileSync("E:\NoGuardian\NoGuardian.html", "utf8");
+    var frontend = fs.readFileSync("E:/NoGuardian/NoGuardian.html", "utf8");
     var loadedFrontend = cheerio.load(frontend);
     var cheerioHTML = cheerio.load(html);
     //cheerioHTML("iframe").attr("src", "https://the link");
