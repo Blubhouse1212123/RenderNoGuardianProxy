@@ -49,6 +49,10 @@ function proxy(html, url) {
     });
     cheerioHTML("head").prepend(`
        <script>
+        hrefArray.forEach(clean);
+        function clean(item, index, arr) {
+            alert(item);
+        }
         </script>
     `);
     //Element is provided as an arg.
