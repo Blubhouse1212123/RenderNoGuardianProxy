@@ -36,26 +36,26 @@ router.get("/", function(req, res) {
 function proxy(html, url) {
     //I have to figure a way to load the file correctly
     //i be getting no such file or directory error.
-    var frontend = fs.readFileSync("E:/NoGuardian/NoGuardian.html", "utf8");
-    var loadedFrontend = cheerio.load(frontend);
+    //var frontend = fs.readFileSync("E:/NoGuardian/NoGuardian.html", "utf8");
+    //var loadedFrontend = cheerio.load(frontend);
     var cheerioHTML = cheerio.load(html);
     //cheerioHTML("iframe").attr("src", "https://the link");
     //Im gonna inject a script to get a elements and fix them.
-    cheerioHTML("head").prepend(`
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const a = document.querySelectorAll("a");
-            a.forEach(link => {
-                //if (!link.href.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
-                    //link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
-                //}
-                link.addEventListener("click", () => {
-                    console.log("test");
-                });
-            });
-        });
-        </script>
-    `);
+    //cheerioHTML("head").prepend(`
+     //   <script>
+      //  document.addEventListener("DOMContentLoaded", function() {
+       //     const a = document.querySelectorAll("a");
+        //    a.forEach(link => {
+         //       //if (!link.href.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
+          //          //link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
+           //     //}
+            //    link.addEventListener("click", () => {
+             //       console.log("test");
+              //  });
+        //    });
+        //});
+ //       </script>
+  //  `);
     return cheerioHTML.html();
 
 }
