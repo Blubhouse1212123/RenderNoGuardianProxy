@@ -35,13 +35,14 @@ router.get("/", function(req, res) {
         }
     });
 });
+//Take advantage of var's non-block scoped properties to use it in the prepended script, maybe.
+var hrefArray = [];
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
     //I have to do it from here because the SOP, also referred to as the CIA is preventing me from doing it.
     //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
     //You have to do each not forEach like this, you cant use forEach on a const, must do cheerioHTML
     //Learned that with a quick google AI overview search.
-    const hrefArray = [];
     cheerioHTML("a").each((index, element) => {
         //The href of every individual element this thing loops through
         var trueHref = cheerioHTML(element).attr("href");
