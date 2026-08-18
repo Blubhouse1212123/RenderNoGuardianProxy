@@ -40,7 +40,12 @@ function proxy(html, url) {
     //I have to do it from here because the SOP, also referred to as the CIA is preventing me from doing it.
     //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
     const a = cheerioHTML("a");
-    console.log("HIIIII" + a);
+    //I now have ALL a elements
+    a.forEach(rewrite);
+    //Element is provided as an arg.
+    function rewrite(element) {
+        console.error(element);
+    }
     return cheerioHTML.html();
 
 }
