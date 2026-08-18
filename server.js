@@ -32,8 +32,11 @@ router.get("/", function(req, res) {
     });
 });
 function proxy(html, url) {
+    //I have to figure a way to load the file correctly
+    //i be getting no such file or directory error.
+    var frontend = fs.readFileSync("path", "utf8");
+    var loadedFrontend = cheerio.load(frontend);
     var cheerioHTML = cheerio.load(html);
-    cheerio.load(fs.readFileSync("E:\\NoGuardian\\NoGuardian.html"));
     //cheerioHTML("iframe").attr("src", "https://the link");
     //Im gonna inject a script to get a elements and fix them.
     cheerioHTML("head").prepend(`
@@ -41,13 +44,11 @@ function proxy(html, url) {
         document.addEventListener("DOMContentLoaded", function() {
             const a = document.querySelectorAll("a");
             a.forEach(link => {
-                if (!link.href.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
-                    link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
-                }
-            });
-            a.forEach(element => {
-                element.addEventListener("click", () => {
-                    cheerioHTML("iframe").attr("src", "https://example.com");
+                //if (!link.href.includes("https://rendernoguardianproxy-1.onrender.com/api?url=")) {
+                    //link.href = "https://rendernoguardianproxy-1.onrender.com/api?url=" + link.href; 
+                //}
+                link.addEventListener("click", () => {
+                    console.log("test");
                 });
             });
         });
