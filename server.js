@@ -44,7 +44,7 @@ function proxy(html, url) {
     cheerioHTML("head").prepend(`
        <script>
         var a = document.querySelector("a");
-        var aArray = [...div_list];
+        var aArray = [...a];
         aArray.forEach(a => {
             console.log(a);
         });
