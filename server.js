@@ -41,7 +41,7 @@ router.get("/", function(req, res) {
 //https://gist.github.com/rtwalz/c4e44c1d22187cfa0561843f0393122a?
 app.get("/:d", function(req, res){
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("X-Frame-Options", "*");
+    res.setHeader("X-Frame-Options", "DENY");
     request(decodeURIComponent(req.params.d)).pipe(res);
 });
 function proxy(html, url) {
