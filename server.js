@@ -1,7 +1,9 @@
-//Run update.ps1 to update the file to render and git
-//TODO: I have un needed npm installs i need to rid of.
-//NPM Installed Packages
-//Everything else here is express app setup, you can find references for this in Cheerio Documentation
+//*******************************************************
+/////////////////////////////////////////////////////////
+//BACKEND CODE FOR RENDER
+//WRITTEN BY @Blubhouse1212123
+/////////////////////////////////////////////////////////
+//*******************************************************
 const http = require("http");
 const axios = require("axios");
 const express = require("express");
@@ -23,8 +25,7 @@ router.get("/", function(req, res) {
     const page = request.get(url, function(error, response, body) {
         if (!error) {
             const proxied = proxy(body, url);
-            //Maybe i would do it here maybe idk
-            //Removing headers so we dont get issues of refusal.
+            //Our problem now is these header strippers dont work, because we have to intercept the page before it sends or something like that i dont know.
             res.removeHeader("X-Frame-Options");
             res.removeHeader("Content-Security-Policy");
             res.removeHeader("Access-Control-Allow-Origin");
@@ -35,12 +36,23 @@ router.get("/", function(req, res) {
         }
     });
 });
+//An attempt to do a proper/working version of rewriting headers
+//i just found this code on some website, im just blindly attempting it.
+//https://gist.github.com/rtwalz/c4e44c1d22187cfa0561843f0393122a?
+app.get("/:d", function(req, res){
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    request(decodeURIComponent(req.params.d)).pipe(res);
+});
 function proxy(html, url) {
     var cheerioHTML = cheerio.load(html);
     //I have to do it from here because the SOP, also referred to as the CIA is preventing me from doing it.
     //https://cheerio.js.org/docs/basics/selecting/ CIA Doesnt know what hit them
     //You have to do each not forEach like this, you cant use forEach on a const, must do cheerioHTML
     //Learned that with a quick google AI overview search.
+
+
+    //I did this, which rewrites it via html level, but network level still stops me. I will try to propery strip the incoming request of its headers.
+    //Stack overflow taught me this
     cheerioHTML("head").prepend(`
        <script>
        document.addEventListener("DOMContentLoaded", function() {
@@ -53,7 +65,6 @@ function proxy(html, url) {
        });
         </script>
     `);
-    //Element is provided as an arg.
     return cheerioHTML.html();
 
 }
