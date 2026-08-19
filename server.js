@@ -39,6 +39,7 @@ router.get("/", function(req, res) {
 //An attempt to do a proper/working version of rewriting headers
 //i just found this code on some website, im just blindly attempting it.
 //https://gist.github.com/rtwalz/c4e44c1d22187cfa0561843f0393122a?
+//This didnt work but ill leave it cuz whatever
 app.get("/:d", function(req, res){
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("X-Frame-Options", "DENY");
@@ -54,10 +55,11 @@ function proxy(html, url) {
 
     //Inject data into the Iframe that communicates with the parent (html)
     //They are linked because this tag is injected into the html of the displayed page
-    //I learned this method from:
-    //and:
+    //I learned this method from:https://www.youtube.com/watch?v=r2_A3bh94fY&msockid=a49041219c0211f1ad79312e0ff05b68
+    //and:https://www.youtube.com/watch?v=SXb5LN_opbA
     cheerioHTML("head").prepend(`
        <script>
+        console.log("Linker script injection complete!");
         document.addEventListener("DOMContentLoaded", function() {
             var a = document.querySelectorAll("a");
             var aArray = [...a];
@@ -74,6 +76,4 @@ function proxy(html, url) {
     return cheerioHTML.html();
 
 }
-app.listen(PORT, () => {
-    console.log("NoGuardian Proxy is running via Render");
-});
+app.listen(PORT, () => {});
