@@ -43,12 +43,14 @@ function proxy(html, url) {
     //Learned that with a quick google AI overview search.
     cheerioHTML("head").prepend(`
        <script>
-        var a = document.querySelectorAll("a");
-        var aArray = [...a];
-        aArray.forEach(a => {
-            var originalHref = a.getAttribute("href");
-            a.setAttribute("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalHref));
-        });
+       document.addEventListener("DOMContentLoaded", function() {
+            var a = document.querySelectorAll("a");
+            var aArray = [...a];
+            aArray.forEach(a => {
+                var originalHref = a.getAttribute("href");
+                a.setAttribute("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalHref));
+            });
+       });
         </script>
     `);
     //Element is provided as an arg.
