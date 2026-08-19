@@ -59,7 +59,8 @@ function proxy(html, url) {
     //and:https://www.youtube.com/watch?v=SXb5LN_opbA
     cheerioHTML("head").prepend(`
        <script>
-        console.log("Linker script injection complete!");
+        console.log("NoGuardian Server: Linker script injection complete!");
+        console.warn("NoGuardian Server: Please understand that you may encounter various console errors, this is normal");
         document.addEventListener("DOMContentLoaded", function() {
             var a = document.querySelectorAll("a");
             var aArray = [...a];
