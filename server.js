@@ -46,7 +46,7 @@ function proxy(html, url) {
         var a = document.querySelectorAll("a");
         var aArray = [...a];
         aArray.forEach(a => {
-            console.log(a);
+            alert("hello");
         });
         </script>
     `);
