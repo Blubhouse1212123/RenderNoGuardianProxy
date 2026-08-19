@@ -43,7 +43,7 @@ function proxy(html, url) {
     //Learned that with a quick google AI overview search.
     cheerioHTML("head").prepend(`
        <script>
-        var a = document.querySelector("a");
+        var a = document.querySelectorAll("a");
         var aArray = [...a];
         aArray.forEach(a => {
             console.log(a);
