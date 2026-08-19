@@ -52,18 +52,23 @@ function proxy(html, url) {
     //Learned that with a quick google AI overview search.
 
 
-    //I did this, which rewrites it via html level, but network level still stops me. I will try to propery strip the incoming request of its headers.
-    //Stack overflow taught me this
+    //Inject data into the Iframe that communicates with the parent (html)
+    //They are linked because this tag is injected into the html of the displayed page
+    //I learned this method from:
+    //and:
     cheerioHTML("head").prepend(`
        <script>
-       document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
             var a = document.querySelectorAll("a");
             var aArray = [...a];
-            aArray.forEach(a => {
-                var originalHref = a.getAttribute("href");
-                a.setAttribute("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalHref));
-            });
-       });
+            aArray.forEach(element => {
+                element.addEventListener("click", () => {
+                    event.preventDefault();
+                    const link = element.getAttribute("href");
+                    window.parent.postMessage(link, "*");
+                });
+            });    
+        });
         </script>
     `);
     return cheerioHTML.html();
