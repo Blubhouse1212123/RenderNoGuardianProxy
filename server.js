@@ -46,7 +46,8 @@ function proxy(html, url) {
         var a = document.querySelectorAll("a");
         var aArray = [...a];
         aArray.forEach(a => {
-            alert("hello");
+            var originalHref = a.getAttribute("href");
+            a.setAttribute("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + originalHref);
         });
         </script>
     `);
