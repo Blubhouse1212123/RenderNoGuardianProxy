@@ -73,12 +73,6 @@ function proxy(html, url) {
                     const link = element.getAttribute("href");
                     window.parent.postMessage(link, "*");
                 });
-            });
-            var images = document.querySelectorAll("img");
-            var imagesArray = [...img];
-            imagesArray.forEach(element => {
-                var originalSrc = element.getAttribute("src");
-                element.setAttribute("src", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalSrc));
             });    
         });
         </script>
