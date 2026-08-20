@@ -74,14 +74,8 @@ function proxy(html, url) {
                     window.parent.postMessage(link, "*");
                 });
             });
-            var iframes = document.querySelectorAll("iframe");
-            var iframeArray = [...iframes];
-            iframeArray.forEach(element => {
-                const src = element.src;
-                if (!src.indexOf("render")) {
-                    element.src = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(src);
-                }    
-            });
+            var iframetestID = document.getElementById("goog_plcm_frame");
+            alert(iframetestID);
         });
         </script>
     `);
