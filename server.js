@@ -16,6 +16,9 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 const PROXYPATH = "/proxy";
 app.use("/api", router);
+//I figured out how to get the base skeleton code 
+//https://gist.githubusercontent.com/shaond/f1d5d6250a0411675990/raw/a5159bf84cf46b305a779f8b8f1cb4eb22ea9e36/proxy.js
+//Kinda reverse engineered that
 //This is the main function for GET requests.
 //Incoming GET requests from the URL
 router.get("/", function(req, res) {
@@ -62,6 +65,7 @@ function proxy(html, url) {
         console.log("NoGuardian Server: Linker script injection complete!");
         console.warn("NoGuardian Server: Please understand that you may encounter various console errors, this is normal");
         document.addEventListener("DOMContentLoaded", function() {
+            window.parent.postMessage("loaded", "*");
             var a = document.querySelectorAll("a");
             var aArray = [...a];
             aArray.forEach(element => {
