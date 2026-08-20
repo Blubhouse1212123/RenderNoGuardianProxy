@@ -81,7 +81,7 @@ function proxy(html, url) {
                 if (!src.indexOf("render")) {
                     element.src = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(src);
                 }    
-            })
+            });
         });
         </script>
     `);
