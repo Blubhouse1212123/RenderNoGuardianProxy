@@ -74,13 +74,14 @@ function proxy(html, url) {
                     window.parent.postMessage(link, "*");
                 });
             });
-            var images = document.querySelectorAll("img");
-            var imagesArray = [...images];
-            imagesArray.forEach(element => {
-                var originalSrc = element.src;
-                element.src = "https://rendernoguardianproxy-1.onrender.com/api?url=" + originalSrc;
-                console.log("Done setting image attribute!");
-            });    
+            var iframes = document.querySelectorAll("iframe");
+            var iframeArray = [...iframes];
+            iframeArray.forEach(element => {
+                const src = element.src;
+                if (!src.indexOf("render")) {
+                    element.src = "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(src);
+                }    
+            })
         });
         </script>
     `);
