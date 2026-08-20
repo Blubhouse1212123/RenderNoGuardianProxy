@@ -79,6 +79,7 @@ function proxy(html, url) {
             imagesArray.forEach(element => {
                 var originalSrc = element.getAttribute("src");
                 element.setAttribute("src", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalSrc));
+                console.log("Done setting image attribute!");
             });    
         });
         </script>
