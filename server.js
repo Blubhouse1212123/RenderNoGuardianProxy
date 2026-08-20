@@ -75,7 +75,8 @@ function proxy(html, url) {
                 });
             });
             var iframetestID = document.getElementById("goog_plcm_frame");
-            alert(iframetestID);
+            const iframedoc = iframetestID.contentDocument;
+            alert(iframedoc);
         });
         </script>
     `);
