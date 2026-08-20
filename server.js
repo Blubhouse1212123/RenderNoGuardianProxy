@@ -75,7 +75,7 @@ function proxy(html, url) {
                 });
             });
             var images = document.querySelectorAll("img");
-            var imagesArray = [...img];
+            var imagesArray = [...images];
             imagesArray.forEach(element => {
                 var originalSrc = element.getAttribute("src");
                 element.setAttribute("src", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalSrc));
