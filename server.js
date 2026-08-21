@@ -30,7 +30,7 @@ router.get("/", function(req, res) {
             const proxied = proxy(body, url);
             //Our problem now is these header strippers dont work, because we have to intercept the page before it sends or something like that i dont know.
             res.removeHeader("X-Frame-Options");
-            res.setHeader("Content-Security-Policy", "frame-ancestors *");
+            res.removeHeader("Content-Security-Policy");
             res.removeHeader("Access-Control-Allow-Origin");
             res.removeHeader("Server");
             res.removeHeader("Transfer-Encoding");
