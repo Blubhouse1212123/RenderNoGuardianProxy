@@ -80,7 +80,7 @@ function proxy(html, url) {
             var imagesArray = [...images];
             imagesArray.forEach(image => {
                 var relitaveLink = image.getAttribute("href");
-                image.setAttribute("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(relitaveLink));    
+                image.setAttribute("href", "https://crazygames.com" + encodeURIComponent(relitaveLink));    
             });
         });
         </script>
