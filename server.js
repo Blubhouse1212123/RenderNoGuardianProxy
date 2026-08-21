@@ -74,12 +74,12 @@ function proxy(html, url) {
                     window.parent.postMessage(link, "*");
                 });
             });
-            var iframetestID = document.getElementById("goog_plcm_frame");
-            const iframedoc = iframetestID.contentDocument;
-            alert(iframedoc);
         });
         </script>
     `);
+    //Gotta Try to make the iframe work for the games
+    //It keeps saying i can only play it on crazygames
+    //I think the CIA did it
     return cheerioHTML.html();
 
 }
