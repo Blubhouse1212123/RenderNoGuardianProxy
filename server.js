@@ -76,14 +76,8 @@ function proxy(html, url) {
                     window.parent.postMessage(link, "*");
                 });
             });
-            var images = document.querySelectorAll("link");
-            var imagesArray = [...images];
-            imagesArray.forEach(image => {
-                var relitaveLink = image.getAttribute("href");
-                if (relitaveLink.contains("master")) {
-                    image.setAttribute("href", "https://crazygames.com" + encodeURIComponent(relitaveLink));    
-                }
-            });
+            const title = document.title;
+            window.parent.postMessage(title, "*");
         });
         </script>
     `);
