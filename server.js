@@ -80,7 +80,9 @@ function proxy(html, url) {
             var imagesArray = [...images];
             imagesArray.forEach(image => {
                 var relitaveLink = image.getAttribute("href");
-                image.setAttribute("href", "https://crazygames.com" + encodeURIComponent(relitaveLink));    
+                if (relitaveLink.contains("master")) {
+                    image.setAttribute("href", "https://crazygames.com" + encodeURIComponent(relitaveLink));    
+                }
             });
         });
         </script>
