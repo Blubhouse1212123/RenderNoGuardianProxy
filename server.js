@@ -76,12 +76,19 @@ function proxy(html, url) {
                     window.parent.postMessage(link, "*");
                 });
             });
+            var images = document.querySelectorAll("link");
+            var imagesArray = [...images];
+            imagesArray.forEach(image => {
+                var relitaveLink = image.getAttribute("href");
+                image.setAttribute("href", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(relitaveLink));    
+            });
         });
         </script>
     `);
     //Gotta Try to make the iframe work for the games
     //It keeps saying i can only play it on crazygames
     //I think the CIA did it
+    //Okay so like CIA got cooked again because the game devs are too dumb to add security
     return cheerioHTML.html();
 
 }
