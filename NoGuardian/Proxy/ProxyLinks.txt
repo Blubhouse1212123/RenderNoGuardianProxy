@@ -1,7 +1,0 @@
-This is a collection of links used for the proxy, it includes the link that is used by the code, and the link used by the author.
-
-
-CODE
-https://rendernoguardianproxy-1.onrender.com
-AUTHOR
-https://dashboard.render.com/web/srv-d9utmn2d0e5s73cft3eg

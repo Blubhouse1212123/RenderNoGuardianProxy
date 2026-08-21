@@ -35,6 +35,8 @@ router.get("/", function(req, res) {
             res.removeHeader("Server");
             res.removeHeader("Transfer-Encoding");
             res.removeHeader("X-Powered-By");
+            res.removeHeader("Referer");
+            res.removeHeader("Referrer-Policy");
             res.send(proxied);
         }
     });
