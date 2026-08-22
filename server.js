@@ -80,9 +80,9 @@ function proxy(html, url) {
             window.parent.postMessage(title, "*");
             const gameFrame = document.getElementById("game-iframe");
             gameFrame.onload = () => {
-                const originalSrc = gameFrame.getAttribute("src");
-                gameFrame.setAttribute("src", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalSrc));
-                alert("game iframe attribute has been set");   
+                //const originalSrc = gameFrame.getAttribute("src");
+                //gameFrame.setAttribute("src", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalSrc));
+                alert("The game iframe has loaded");   
             }
         });
         </script>
