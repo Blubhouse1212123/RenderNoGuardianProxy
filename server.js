@@ -78,6 +78,10 @@ function proxy(html, url) {
             });
             const title = document.title;
             window.parent.postMessage(title, "*");
+            const gameFrame = document.getElementById("game-iframe");
+            const originalSrc = gameFrame.getAttribute("src");
+            gameFrame.setAttribute("src", "https://rendernoguardianproxy-1.onrender.com/api?url=" + encodeURIComponent(originalSrc));
+            alert("game iframe attribute has been set");
         });
         </script>
     `);
